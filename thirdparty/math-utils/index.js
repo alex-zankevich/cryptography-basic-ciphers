@@ -59,6 +59,26 @@ let MathUtils = {
 	    }
 
 	    return output;
+	},
+	inverseModulo: function(matr) {
+		let matrLength = matr.length;
+
+		function algebraAdd(iIndex, jIndex) {
+			var newMatr = [];
+			var alg = [];
+
+			for (var i = 0; i < matr.length; i++) {
+				for(var j = 0; j < matrLength; j++) {
+					if(i !== iIndex && j !== jIndex) {
+						newMatr.push(matr[i][j]);
+					}
+				}
+			}
+
+			while (newMatr.length) alg.push(newMatr.splice(0, size));
+
+			
+		}
 	}
 }
 

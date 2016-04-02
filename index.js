@@ -1,5 +1,6 @@
 'use strict';
- 
+let start = process.hrtime();
+
 let fs = require('fs');
 
 let NodeUtils = require('./thirdparty/node-utils').NodeUtils;
@@ -10,6 +11,7 @@ let TranspositionCipher = require('./ciphers/transposition').TranspositionCipher
 let SubstitutionCipher = require('./ciphers/substitution').SubstitutionCipher;
 let VigenereCipher = require('./ciphers/vigenere').VigenereCipher;
 let AffineCipher = require('./ciphers/affine').AffineCipher;
+let HillCipher = require('./ciphers/hill').HillCipher;
 
 let openText = '';
 let alphabet = '';
@@ -23,7 +25,7 @@ let readInputFiles = function() {
 
 let writeOutputFile = function(cipher) {
 	let cipherDir = cipher.constructor.name.toLowerCase();
-	
+	debugger;
 	deleteFolderRecursive(`./output/${cipherDir}`);
 	
 	if(!fs.existsSync(cipherDir)) {
@@ -67,3 +69,15 @@ runCipher(AffineCipher, {
 	openText: openText,
 	alphabet: alphabet
 });
+
+runCipher(HillCipher, {
+	openText: openText,
+	alphabet: alphabet,
+	key: [
+		[6, 24, 1],
+		[13, 16, 10],
+		[20, 17, 15]
+	]
+});
+
+console.log(process.hrtime(start)[1] / 1000000, 'ms');

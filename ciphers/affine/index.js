@@ -10,9 +10,12 @@ let getRandomInt = MathUtils.getRandomInt;
 let eratostheneSieve = MathUtils.eratostheneSieve;
 
 class AffineCipher extends BaseCipher{
-	constructor(openText, alphabet) {
+	constructor(openText, alphabet, key) {
 		super(openText, alphabet);
-		this.initKey();
+		if(!key) {
+			this.initKey();
+		}
+
 	}
 
 	encodeText() {
@@ -38,7 +41,7 @@ class AffineCipher extends BaseCipher{
 		if(gcd(primes[aIndex], this.alphabet.length) !== 1) {
 			this.initKey();
 		} else {
-			this.key = {
+			this.key =  {
 				a: primes[aIndex],
 				b: primes[bIndex],
 				m: this.alphabet.length,
